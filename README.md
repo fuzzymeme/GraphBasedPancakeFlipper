@@ -1,0 +1,7 @@
+# GraphBasedPancakeFlipper
+Experiments to solve the Pancake Flipping problem to find optimal solutions - even though memory cost scales factorially.
+
+So I'm returning to the Pancake flipping problem, partly because is gave me an excuse to write some Graph code and partly because the output of this code would help improve the other Pancake flipping code. With this code ideally producing the optimal flips to produce a solution it should be easier to find the sub-optimal flips in my other solution. You may ask, if this produces optimal solutions then why bother with the other code? Well this code has to enumerate all solutions to find the best solution, and the requires the memory used to scale factorially. With stacks of length 10 the program requires nearly 4Gb of RAM. Length 11 would require 44Gb length 12 -> 523Gb, 13->6.8Tb etc. As you can see this not scalable. However finding the optimal solutions at lower lengths will guide the tweaks (or major re-writes) of the other Pancake Flipping code. 
+
+As this is experimental code it's pretty gnarly. I got a overly focused on getting it to run length 10. Length 9 ran fine, and quickly, but length 10 just wasn't happening. It would fast off OK, but get slower and slower. Switching one the agenda List to a LinkedList helped, but then it was hitting a wall when it got to around 61% complete. Upping the heap size to 4Gb broke that barrier and it ran pretty quickly. My current laptop doesn't have 44Gb of memory, so I'm going to leave it there maxing out a stack length 10.
+
