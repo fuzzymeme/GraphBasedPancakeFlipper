@@ -15,9 +15,11 @@ import com.richard.graphs.Node;
 
 public class GraphBasedPancakeFlipper {
 	
-	TimeRecorder recorder = new TimeRecorder();
+	private TimeRecorder recorder = new TimeRecorder();
 
-	private void flip(Integer ... input) {
+	public Graph<List<Integer>, Integer> flip(Integer ... input) {
+		
+		Graph<List<Integer>, Integer> graph = new Graph<>();		
 		
 		List<Integer> inputList = Arrays.asList(input);
 		Map<List<Integer>, String> alreadySeen = new HashMap<>(4000000);
@@ -26,7 +28,6 @@ public class GraphBasedPancakeFlipper {
 		List<List<Integer>> agenda = new LinkedList<>(); // Remember how much faster this is with a linkedlist rather than an arraylist 
 		agenda.add(inputList);
 		
-		Graph<List<Integer>, Integer> graph = new Graph<>();		
 		String inputListNodeId = graph.addNode(inputList);
 		alreadySeen.put(inputList, inputListNodeId);
 				
@@ -103,6 +104,8 @@ public class GraphBasedPancakeFlipper {
 		double average = (double)  totalFlips / (double) graph.getNodeCount();
 		System.out.println("Average: " + average);
 		System.out.println("Elapsed: " + elapsed);
+		
+		return graph;
 	}
 	
 	private void reportTimes() {
