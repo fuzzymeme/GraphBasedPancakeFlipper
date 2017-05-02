@@ -10,15 +10,15 @@ I got a overly focused on getting it to run all stacks of length 10. Length 9 ra
 Running it on various lengths produced some pretty interesting results. Below is a comparison of the two outputs
 
 ```
-Length        Permutations        Total flips (Sequence Based)   Av.       Total flips (Graph Based)      Av.
-2                  2                        1                    0.50               1                     0.5
-3                  6                        6                    1.50               9                     1.50
-4                  24                       61                   2.52               60                    2.50
-5                  120                      466                  3.80               425                   3.54
-6                  720                      3,629                5.04               3,295                 4.56
-7                  5040                     31,678               6.28               28,280                5.61
-8                  40320                    304,169              7.54               267,711               6.64
-9                  362,880                  3,194,911            8.80               2,780,947             7.66                                                             
+Length   Permutations      Total flips (Sequence Based)   Av.       Total flips (Graph Based)     Av.
+2            2                      1                    0.50               1                     0.5
+3            6                      6                    1.50               9                     1.50
+4            24                     61                   2.52               60                    2.50
+5            120                    466                  3.80               425                   3.54
+6            720                    3,629                5.04               3,295                 4.56
+7            5040                   31,678               6.28               28,280                5.61
+8            40320                  304,169              7.54               267,711               6.64
+9            362,880                3,194,911            8.80               2,780,947             7.66                                                             
 ```
 As you can see the number of flips in total is less for the Graph based system, and that's reflected in the averages. Taking a look at the differences between the two I can see which permutations are sub-optimal and the flips in the optimal solutions. If I print out the distribution of flips required across all permutations it shows that there is a number that sub-optimal. 
 
