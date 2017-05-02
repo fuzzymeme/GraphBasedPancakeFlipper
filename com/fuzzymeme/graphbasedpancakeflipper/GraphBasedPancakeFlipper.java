@@ -16,7 +16,7 @@ import com.richard.graphs.Node;
 public class GraphBasedPancakeFlipper {
 	
 	private TimeRecorder recorder = new TimeRecorder();
-
+	
 	public Graph<List<Integer>, Integer> flip(Integer ... input) {
 		
 		Graph<List<Integer>, Integer> graph = new Graph<>();		
@@ -168,7 +168,7 @@ public class GraphBasedPancakeFlipper {
 	
 	public static void main(String[] args) {
 		GraphBasedPancakeFlipper flipper = new GraphBasedPancakeFlipper();
-		flipper.flip(1, 2, 3, 4);
+		flipper.flip(2, 4, 0, 3, 1);
 
 	}
 

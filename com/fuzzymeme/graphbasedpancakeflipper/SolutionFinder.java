@@ -3,13 +3,17 @@ package com.fuzzymeme.graphbasedpancakeflipper;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.IntStream;
 
+import com.fuzzymeme.graphbasedpancakeflipper.utils.CounterMap;
+import com.fuzzymeme.graphbasedpancakeflipper.utils.CounterMapUtils;
 import com.richard.graphs.Arc;
 import com.richard.graphs.Graph;
 import com.richard.graphs.Node;
 
 public class SolutionFinder {
 
+	private CounterMap<Integer> flipSetCounts = new CounterMap<>();
 	
 	private int findSolutionFor(Graph<List<Integer>, Integer> graph, Integer ... inputArray) {
 		
@@ -37,39 +41,44 @@ public class SolutionFinder {
 		return flipCount;
 	}
 	
-	public Graph<List<Integer>, Integer> generateGraph() {
+	public Graph<List<Integer>, Integer> generateGraph(int stackLength) {
 		GraphBasedPancakeFlipper flipper = new GraphBasedPancakeFlipper();
-		Graph<List<Integer>, Integer> graph = flipper.flip(0, 1, 2, 3);
+		Integer[] array = IntStream.range(0, stackLength).boxed().toArray(Integer[]::new); 
+		
+		Graph<List<Integer>, Integer> graph = flipper.flip(array);
 		return graph;
 	}
 	
 	private void findSolution(Integer ... inputArray) {
 		
-		Graph<List<Integer>, Integer> graph = generateGraph();
+		Graph<List<Integer>, Integer> graph = generateGraph(inputArray.length);
 		findSolutionFor(graph, inputArray);
 	}
 	
-	private void findAllSolutions() {
+	private void findAllSolutions(int length) {
 		
-		Graph<List<Integer>, Integer> graph = generateGraph();
+		Graph<List<Integer>, Integer> graph = generateGraph(length);
 		
 		PermutationGenerator permGenerator = new PermutationGenerator();
-		List<List<Integer>> perms = permGenerator.getAllPermutations(4);
+		List<List<Integer>> perms = permGenerator.getAllPermutations(length);
 		
 		int totalFlipCount = 0;
 		int index = 0;
 		for(List<Integer> perm: perms) {
 			int flipCount = findSolutionFor(graph, perm.toArray(new Integer[perm.size()]));
+			flipSetCounts.inc(flipCount);
 			totalFlipCount += flipCount;
 			System.out.println(index + ": " + perm + " \t" + flipCount + "   " + totalFlipCount);
 			index++;
 		}
+		
+		System.out.println("CounterMap:\n" + CounterMapUtils.toPrettyPrintString(flipSetCounts));
 	}
 	
 	public static void main(String[] args) {
 		
 		SolutionFinder solutionFinder = new SolutionFinder();	
-		solutionFinder.findAllSolutions();		
-		solutionFinder.findSolution(1, 0, 3, 2);
+//		solutionFinder.findAllSolutions(5);		
+		solutionFinder.findSolution(2, 4, 0, 3, 1);
 	}
 }
