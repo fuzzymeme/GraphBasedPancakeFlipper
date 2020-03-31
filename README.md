@@ -38,7 +38,7 @@ Num flips         Optimal         Sequence based
 9                                     1
 ```
 
-To explain... The optimal solution across all permutations of length 5 how 35 solutions that had 3 flips, whereas the Sequence based code had 31 solutions with 3 flips. 
+To explain... The optimal solution across all permutations of length 5 show 35 solutions that had 3 flips, whereas the Sequence based code had 31 solutions with 3 flips. 
 
 It would seem that the optimal solution always has less than N flips. I'd need to check this out at other lengths. 
 
@@ -47,7 +47,7 @@ Taking a look at the different strategies of the two algorithms for a randomly c
 Looking at other differences makes me think that it not just a case of extra flip rules but of choosing the most appropriate flip. In some case the sequence based code could merge the top sequence with two others rather than just one. It currently chooses the first sequence mergeable sequence it finds. It would be better if it found all mergeable sequences (and hopefully) used a rule to chose the better merge. 
 
 Anyway I have to wrap this up just now (2nd May 2017). There's still scope for improving the rules, use a tree to explore both options (should be OK as max branching of 2 usually 1 and max depth of N), and having code find optimal rules and rule ordering. 
-My main was to be able to find flip solutions that have less than 2N steps. I've done that. Even with lengths of 4000 it still finds solutions quickly and less than 8000 flips. Also the solutions should be found in less than O(n!) time and memory and that is also true for the Sequence Based Flipper. I know there are some improvements that can be made but I really to move onto other code. 
+My aim was to be able to find flip solutions that have less than 2N steps. I've done that. Even with lengths of 4000 it still finds solutions quickly and less than 8000 flips. Also the solutions should be found in less than O(n!) time and memory and that is also true for the Sequence Based Flipper. I know there are some improvements that can be made but I really to move onto other code. 
 
 
 
